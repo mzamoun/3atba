@@ -1,0 +1,171 @@
+body {
+  background-color: lightblue;
+  /* background-image: url(https://cdn.umso.co/87zmvc5pwl6o/assets/y4gmlfm6.svg); */
+  background-repeat: no-repeat;
+}
+
+.center {
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.content {
+  position: fixed;
+  bottom: 40%;
+  background: lightblue;
+  color: white ;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.contentPage {
+  position: fixed;
+  top: 20%;
+  bottom: 0%;
+  background: lightblue;
+  color: white ;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+#title {
+  font-weight: bold;
+}
+
+#btnPause {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: white;
+  cursor: pointer;
+}
+
+#btnPause:hover {
+  background: #ddd;
+  color: black;
+}
+
+.btn {
+  width: 200px;
+  /* height: 20px; */
+  border: 2px solid #000;
+  margin: 10px;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.btnMenu {
+  font-size: 15px;
+  padding: 1px;
+  /* margin-bottom: 50%; */
+  background-color: white ;
+  color: blue  ;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.img_acceuil {
+  width: 50px;
+  height: 50px;
+  /* margin-top: -10px; */
+}
+
+.btnAcceuil {
+  /* font-size: 30px; */
+  /* padding: 10px; */
+  border: none;
+  background: #000;
+  color: white;
+  cursor: pointer;
+  width: 50px;
+  /* float: left; */
+  /* margin-top: 5px; */
+}
+
+.btnUserIcon {
+  font-size: 15px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: white;
+  cursor: pointer;
+  float: right;
+  margin-right: 10px;
+}
+
+.info {
+  font-size: 18px;
+  padding: 10px;
+  border: 1px;
+  background: #000;
+  color: blue;
+}
+
+.err {
+  font-size: 18px;
+  padding: 10px;
+  border: 1px;
+  background: #000;
+  color: red;
+}
+
+.prec,
+.next {
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  background-color: White;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.right {
+  float: right;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.w80 {
+  width: 80%;
+}
+
+.w40 {
+  width: 40%;
+}
+
+.cadre {
+  border: 2px solid ;
+}
+
+.ColorW {
+  color: white;
+}

@@ -1,0 +1,24 @@
+    /* Styles généraux pour les boutons radio */
+    .radio-buttons input[type="radio"] {
+        display: inline-block;
+        /* Masquer les boutons radio par défaut */
+    }
+
+    /* Styles pour l'apparence personnalisée des boutons radio */
+    .radio-buttons input[type="radio"]+label {
+        display: inline-block;
+        cursor: pointer;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    /* Style lorsque le bouton radio est coché */
+    .radio-buttons input[type="radio"]:checked+label {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+
+    

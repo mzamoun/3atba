@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!-- <script type="text/javascript" th:src="@{/lib/js/jquery-3.6.0.js}"></script> -->
+
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+</head>
+<style>
+    /* Styles généraux pour les boutons radio */
+    .radio-buttons input[type="radio"] {
+        display: inline-block;
+        /* Masquer les boutons radio par défaut */
+    }
+
+    /* Styles pour l'apparence personnalisée des boutons radio */
+    .radio-buttons input[type="radio"]+label {
+        display: inline-block;
+        cursor: pointer;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    /* Style lorsque le bouton radio est coché */
+    .radio-buttons input[type="radio"]:checked+label {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+
+</style>
+
+<body>
+
+    <div id="radios"> </div>
+    <div id="val"> </div>
+    <button onclick="getVal()"> Get </button>
+    <br>
+    <input type="text" id="inputVal">
+    <button onclick="setVal()"> SET </button>
+
+
+    <script>
+
+
+        /////////////////////
+        /**
+         * 
+         * @param {*} nom 
+         * @param {*} options : tab of { value: 'option1', label: 'Option 1' }
+         */
+        function ButtonRadio(nom, options, isVertical) {
+
+            console.log("ButtonRadio, isVertical:", isVertical)
+
+            if (isVertical === null || isVertical === "") {
+                isVertical = true;
+                console.log("ButtonRadio, isVertical: 2 ", isVertical)
+            }
+
+            
+            this.nom = nom;
+            this.options = options;
+            this.isVertical = isVertical;
+
+            console.log("ButtonRadio, this.isVertical:", this.isVertical)
+            
+            /**
+             * 
+             * @param {*} idDiv 
+             * @param {*} classCss 
+             * @returns 
+             */
+            this.getHtml = function (idDiv, classCss) {
+
+                console.log("getHtml(), this:", this)
+                console.log("getHtml(), this.isVertical:", this.isVertical)
+
+                if (classCss == null) {
+                    classCss = "radio-buttons";
+                }
+                var html = '<div class="' + classCss + '">';
+
+                const saut = this.isVertical === true ? "<br>" : "";
+
+                // Parcours des options pour créer les boutons radio
+                for (var i = 0; i < options.length; i++) {
+                    var option = options[i];
+                    html += '<input type="radio" id="' + this.nom + i + '"  name="' + this.nom + '" value="' + option.value + '" label="' + option.label + '" >';
+                    html += '<label id="' + 'label_' + this.nom + i + '" for="' + this.nom + i + '" >' + option.label + '</label>' + saut;
+                }
+
+                html += '</div>';
+
+                if (idDiv != null && idDiv != "") {
+                    var target = document.getElementById(idDiv);
+                    if (target != null) {
+                        target.innerHTML = html;
+                    }
+                }
+                return html;
+            };
+
+            /**
+             * 
+             * @returns { value: 'option1', label: 'Option 1' }
+             */
+            this.getOptionChecked = function () {
+                var inputSelected = document.querySelector('input[name="' + this.nom + '"]:checked');
+                var inputSelectedObj = $(inputSelected)
+                var opt = null;
+
+                if (inputSelected) {
+                    console.log("input sélectionnée : ", inputSelected);
+                    console.log("Value sélectionnée : ", inputSelected.value);
+                    opt = {
+                        value: inputSelectedObj.attr("value"),
+                        label: inputSelectedObj.attr("label"),
+                    }
+                } else {
+                    console.log("Aucune option sélectionnée.");
+                }
+
+                return opt;
+            };
+
+            /////
+
+            this.setOption = function (option) {
+                var inputs = $('input[name="' + this.nom + '"]');
+                console.log("setOption : inputs : ", inputs)
+                for (var i = 0; i < inputs.length; i++) {
+                    var input = $(inputs[i])
+                    var label = $('#label_' + this.nom + i);
+                    console.log("input", input)
+                    // input.attr("c")
+                    if (input.attr("value") == option.value) {
+                        input.attr("checked", "checked")
+                        if (option.label != null) {
+                            input.attr("label", option.label);
+                            label.text(option.label)
+                        }
+                    }
+                }
+            };
+
+        }
+
+
+        //////////////////////////////////
+
+        const target = document.getElementById("radios");
+        const val = document.getElementById("val");
+        const inputVal = document.getElementById("inputVal");
+        const radios = new ButtonRadio("radios", [
+            { value: "1", label: "lab1" },
+            { value: "2", label: "lab2" },
+        ], false );
+        console.log("nom=" + radios.nom)
+        const html = radios.getHtml("radios");
+        function getVal() {
+            const opt = radios.getOptionChecked();
+            if (opt != null) {
+                val.innerHTML = opt.value + ", " + opt.label;
+                console.log("opt selected ", opt)
+            }
+        }
+        function setVal() {
+            var inPut = $("#inputVal").val()
+            console.log("setVal : inPut ", inPut)
+            var opt = { value: inPut, label: "label " + inPut }
+            radios.setOption(opt)
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
